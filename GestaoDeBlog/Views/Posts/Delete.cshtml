@@ -1,0 +1,27 @@
+﻿@model GestaoDeBlog.Services.ViewModels.PostDeleteVm
+
+@{
+    Layout = null;
+}
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+        </div>
+        <div class="modal-body">
+            <h6 class="text-danger">Você tem certeza que deseja excluir o post "@Model.Titulo"?</h6><br />
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="PostId" />
+                <div class="text-right">
+                    <button type="submit" class="btn btn-danger">
+                        Excluir
+                    </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

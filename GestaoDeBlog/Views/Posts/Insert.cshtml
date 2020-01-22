@@ -1,0 +1,72 @@
+﻿@model GestaoDeBlog.Services.ViewModels.PostInsertVm
+
+@{
+    ViewData["Title"] = "Insert";
+}
+
+<h1>Criar Post</h1>
+
+<hr />
+<div class="row">
+    <div class="col-6">
+        <form asp-action="Insert">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" readonly />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autor" class="control-label"></label>
+                <input asp-for="Autor" class="form-control" />
+                <span asp-validation-for="Autor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Conteudo" class="control-label"></label>
+                <textarea asp-for="Conteudo" id="editor"></textarea>
+                <span asp-validation-for="Conteudo" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Ativo" /> Ativo
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="~/js/site.js"></script>
+@section Scripts{
+    <script>
+        $(document).ready(function () {        
+            var url = $("#Url");
+            var titulo = $("#Titulo");
+            var urlDefault = "http://localhost/";
+            url.val(urlDefault);
+            
+            generateUrl(urlDefault, url, titulo);
+
+            ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        });
+
+    </script>
+}
